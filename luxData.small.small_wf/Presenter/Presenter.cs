@@ -19,6 +19,9 @@ namespace luxData.small.small_wf.Presenter
             LoadData();
         }
 
+        /// <summary>
+        /// Loads Data from to the View
+        /// </summary>
         private void LoadData()
         {
             var source = new List<Object>

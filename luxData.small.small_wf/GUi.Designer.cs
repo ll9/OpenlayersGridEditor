@@ -88,6 +88,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "GUI";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GUI_FormClosing);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.GridSplitContainer.Panel2.ResumeLayout(false);

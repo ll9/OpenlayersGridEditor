@@ -43,5 +43,10 @@ namespace luxData.small.small_wf
             GridSplitContainer.Panel1.Controls.Add(chromeBrowser);
             chromeBrowser.Dock = DockStyle.Fill;
         }
+
+        private void GUI_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Cef.Shutdown();
+        }
     }
 }

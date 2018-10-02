@@ -1,6 +1,6 @@
 ﻿namespace luxData.small.small_wf
 {
-    partial class Form1
+    partial class GUI
     {
         /// <summary>
         /// Erforderliche Designervariable.

@@ -38,7 +38,8 @@ namespace luxData.small.small_wf
             // Initialize cef with the provided settings
             Cef.Initialize(settings);
             // Create a browser component
-            chromeBrowser = new ChromiumWebBrowser("http://ourcodeworld.com");
+            var page = $@"{Application.StartupPath}\html_resources\index.html";
+            chromeBrowser = new ChromiumWebBrowser(page);
             // Add it to the form and fill it to the form window.
             GridSplitContainer.Panel1.Controls.Add(chromeBrowser);
             chromeBrowser.Dock = DockStyle.Fill;

@@ -21,7 +21,7 @@ namespace luxData.small.small_wf.Presenter
 
         private void LoadData()
         {
-            var source = new object[]
+            var source = new List<Object>
             {
                 new {name = "Bara", age = 22 },
                 new {name = "haha", age = 23 },

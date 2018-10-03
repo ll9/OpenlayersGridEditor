@@ -59,7 +59,7 @@ namespace luxData.small.small_wf.Utils
             DbName = dbName;
         }
 
-        private void BuildNewProject()
+        public void BuildNewProject()
         {
             // Check if directory has content
             if (Directory.EnumerateFileSystemEntries(ProjectFolderPath).Any())

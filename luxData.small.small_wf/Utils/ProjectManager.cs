@@ -10,14 +10,14 @@ namespace luxData.small.small_wf.Utils
 {
     public interface IProjectManager
     {
-        string DefaultFolderKey { get; set; }
-        string ProjectFolderPath { get; set; }
+        string DefaultFolderKey { get; }
+        string ProjectFolderPath { get; }
         string DbName { get; }
-        string DbFolderPath { get; set; }
-        string DbFilePath { get; set; }
-        string ClassificationFolderPath { get; set; }
-        string ClassificationFilePath { get; set; }
-        string BackupFolderPath { get; set; }
+        string DbFolderPath { get; }
+        string DbFilePath { get; }
+        string ClassificationFolderPath { get; }
+        string ClassificationFilePath { get; }
+        string BackupFolderPath { get; }
 
 
         bool RestoreBackup(string path);
@@ -31,12 +31,8 @@ namespace luxData.small.small_wf.Utils
     /// </summary>
     public class ProjectManager : IProjectManager
     {
-        public string DbFolderPath { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string DbFilePath { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string ClassificationFolderPath { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string ClassificationFilePath { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string BackupFolderPath { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string DefaultFolderKey { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        private const string ClassificationFile = "default.json";
+
         public string ProjectFolderPath
         {
             get
@@ -50,6 +46,12 @@ namespace luxData.small.small_wf.Utils
             }
         }
         public string DbName { get; }
+        public string DbFolderPath { get; }
+        public string DbFilePath => $@"{DbFolderPath}\{DbName}";
+        public string ClassificationFolderPath { get; }
+        public string ClassificationFilePath => $@"{ClassificationFolderPath}\{}"
+        public string BackupFolderPath { get; }
+        public string DefaultFolderKey { get; }
 
         public ProjectManager(string defaultFolderKey, string dbName)
         {
@@ -59,9 +61,7 @@ namespace luxData.small.small_wf.Utils
             if (string.IsNullOrEmpty(ProjectFolderPath))
             {
                 ProjectFolderPath = Application.StartupPath;
-
                 CreateProjectFolders();
-
                 CreateProjectFiles();
 
             }

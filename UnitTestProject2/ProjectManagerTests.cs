@@ -12,11 +12,10 @@ namespace UnitTestProject2
         private ProjectManager _projectManager;
 
         [OneTimeSetUp]
-        public void FixtureSetUp()
+        public void InitOnce()
         {
-            _projectManager = new ProjectManager(DefaultFolderKey, "lds.sqlite");
-            var path = TestContext.CurrentContext.TestDirectory + "\\lds_project_copy";
-            _projectManager.ProjectFolderPath = path;
+            Properties.Settings.Default["defaultFolder"] = TestContext.CurrentContext.TestDirectory + "\\lds_project_copy";
+            Properties.Settings.Default.Save();
         }
 
         [SetUp]
@@ -35,7 +34,8 @@ namespace UnitTestProject2
                 SearchOption.AllDirectories))
                 File.Copy(newPath, newPath.Replace(SourcePath, DestinationPath), true);
 
-            _projectManager = new ProjectManager(DefaultFolderKey, "lds.sqlite");
+            var projectPath = Properties.Settings.Default["defaultFolder"].ToString();
+            _projectManager = new ProjectManager(projectPath);
         }
 
         [Test]
@@ -44,16 +44,6 @@ namespace UnitTestProject2
             Assert.That(() => _projectManager.BuildNewProject(),
                 Throws.Exception.TypeOf<InvalidOperationException>());
 
-        }
-
-        [Test]
-        public void SaveProjectFolder_WhenCalled_PersistFolder()
-        {
-            _projectManager.ProjectFolderPath = "temp";
-
-            _projectManager = new ProjectManager(DefaultFolderKey, "lds.sqlite");
-
-            Assert.That(_projectManager.ProjectFolderPath, Is.EqualTo("temp"));
         }
     }
 }

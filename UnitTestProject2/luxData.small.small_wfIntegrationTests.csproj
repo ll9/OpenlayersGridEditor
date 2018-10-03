@@ -71,6 +71,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="lds_project\BACKUP\dummy">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

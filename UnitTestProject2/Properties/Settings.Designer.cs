@@ -22,5 +22,17 @@ namespace UnitTestProject2.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string defaultFolder {
+            get {
+                return ((string)(this["defaultFolder"]));
+            }
+            set {
+                this["defaultFolder"] = value;
+            }
+        }
     }
 }

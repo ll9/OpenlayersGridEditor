@@ -12,9 +12,7 @@ namespace luxData.small.small_wf.Utils
 {
     public interface IProjectManager
     {
-        string DefaultFolderKey { get; }
         string ProjectFolderPath { get; }
-        string DbName { get; }
         string DbFolderPath { get; }
         string DbFilePath { get; }
         string ClassificationFolderPath { get; }
@@ -32,31 +30,18 @@ namespace luxData.small.small_wf.Utils
     public class ProjectManager : IProjectManager
     {
         private const string ClassificationFile = "default.json";
+        private const string DbName = "lds.json";
 
-        public string ProjectFolderPath
-        {
-            get
-            {
-                return Properties.Settings.Default[DefaultFolderKey].ToString();
-            }
-            set
-            {
-                Properties.Settings.Default[DefaultFolderKey] = value;
-                Properties.Settings.Default.Save();
-            }
-        }
-        public string DefaultFolderKey { get; }
-        public string DbName { get; }
+        public string ProjectFolderPath { get; }
         public string DbFolderPath => $@"{ProjectFolderPath}\DB";
         public string DbFilePath => $@"{DbFolderPath}\{DbName}";
         public string BackupFolderPath => $@"{ProjectFolderPath}\BACKUP";
         public string ClassificationFolderPath => $@"{DbFolderPath}\CLASSIFICATION";
         public string ClassificationFilePath => $@"{ClassificationFolderPath}\{ClassificationFile}";
 
-        public ProjectManager(string defaultFolderKey, string dbName)
+        public ProjectManager(string projectFolderPath)
         {
-            DefaultFolderKey = defaultFolderKey;
-            DbName = dbName;
+            ProjectFolderPath = projectFolderPath;
         }
 
         public void BuildNewProject()
@@ -67,7 +52,6 @@ namespace luxData.small.small_wf.Utils
                 throw new InvalidOperationException("Directory has to be emty in order to build a new project");
             }
 
-            ProjectFolderPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             CreateProjectFolders();
             CreateProjectFiles();
         }

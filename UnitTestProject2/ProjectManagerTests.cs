@@ -37,13 +37,5 @@ namespace UnitTestProject2
             var projectPath = Properties.Settings.Default["defaultFolder"].ToString();
             _projectManager = new ProjectManager(projectPath);
         }
-
-        [Test]
-        public void BuildNewProject_ProjectPathNotEmptyDirectory_throwException()
-        {
-            Assert.That(() => _projectManager.BuildNewProject(),
-                Throws.Exception.TypeOf<InvalidOperationException>());
-
-        }
     }
 }

@@ -30,7 +30,7 @@ namespace luxData.small.small_wf.Utils
     public class ProjectManager : IProjectManager
     {
         private const string ClassificationFile = "default.json";
-        private const string DbName = "lds.json";
+        private const string DbName = "lds.sqlite";
 
         public string ProjectFolderPath { get; }
         public string DbFolderPath => $@"{ProjectFolderPath}\DB";
@@ -46,12 +46,6 @@ namespace luxData.small.small_wf.Utils
 
         public void BuildNewProject()
         {
-            // Check if directory has content
-            if (Directory.EnumerateFileSystemEntries(ProjectFolderPath).Any())
-            {
-                throw new InvalidOperationException("Directory has to be emty in order to build a new project");
-            }
-
             CreateProjectFolders();
             CreateProjectFiles();
         }

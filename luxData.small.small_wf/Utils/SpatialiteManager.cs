@@ -63,7 +63,7 @@ namespace luxData.small.small_wf.Utils
                 if (dr.GetName(i) == GeometryColumn)
                 {
                     // 5 decimals, 2 means geojson with crs
-                    items.Add("AsGeoJSON('POINT', 5, 2)");
+                    items.Add($"AsGeoJSON({GeometryColumn}, 5, 2)");
                 }
                 else
                 {

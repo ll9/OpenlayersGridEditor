@@ -9,5 +9,6 @@ namespace luxData.small.small_wf.Views
     interface IView
     {
         object DataSource { get; set; }
+        event EventHandler ViewClosing;
     }
 }

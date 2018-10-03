@@ -2,6 +2,7 @@
 using luxData.small.small_wf.Views;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Dynamic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace luxData.small.small_wf.Presenter
         public IView View { get; set; }
         public ProjectManager ProjectManager { get; set; }
         public SpatialiteManager SpatialiteManager { get; set; }
+        public DataTable DataTable { get; set; }
         public string ProjectFolderPath
         {
             get
@@ -46,6 +48,13 @@ namespace luxData.small.small_wf.Presenter
             SpatialiteManager = new SpatialiteManager(ProjectManager.DbFilePath);
 
             LoadData();
+
+            View.ViewClosing += View_ViewClosing;
+        }
+
+        private void View_ViewClosing(object sender, EventArgs e)
+        {
+            SpatialiteManager.Update(DataTable);
         }
 
         /// <summary>
@@ -53,9 +62,11 @@ namespace luxData.small.small_wf.Presenter
         /// </summary>
         private void LoadData()
         {
-            var table = SpatialiteManager.GetDataTable();
+            DataTable = SpatialiteManager.GetDataTable();
 
-            View.DataSource = table;
+            View.DataSource = DataTable;
         }
+
+        
     }
 }

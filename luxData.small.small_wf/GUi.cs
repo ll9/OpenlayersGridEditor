@@ -32,6 +32,8 @@ namespace luxData.small.small_wf
             }
         }
 
+        public event EventHandler ViewClosing;
+
         public void InitializeChromium()
         {
             CefSettings settings = new CefSettings();
@@ -48,6 +50,7 @@ namespace luxData.small.small_wf
         private void GUI_FormClosing(object sender, FormClosingEventArgs e)
         {
             Cef.Shutdown();
+            ViewClosing(sender, e);
         }
     }
 }

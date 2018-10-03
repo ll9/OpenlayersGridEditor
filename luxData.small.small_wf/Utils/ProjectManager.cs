@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -44,26 +45,31 @@ namespace luxData.small.small_wf.Utils
                 Properties.Settings.Default.Save();
             }
         }
-        public string DbName { get; }
-        public string DbFolderPath { get; }
-        public string DbFilePath => $@"{DbFolderPath}\{DbName}";
-        public string ClassificationFolderPath { get; }
-        public string ClassificationFilePath => $@"{ClassificationFolderPath}\{ClassificationFile}";
-        public string BackupFolderPath { get; }
         public string DefaultFolderKey { get; }
+        public string DbName { get; }
+        public string DbFolderPath => $@"{ProjectFolderPath}\DB";
+        public string DbFilePath => $@"{DbFolderPath}\{DbName}";
+        public string BackupFolderPath => $@"{ProjectFolderPath}\BACKUP";
+        public string ClassificationFolderPath => $@"{DbFolderPath}\CLASSIFICATION";
+        public string ClassificationFilePath => $@"{ClassificationFolderPath}\{ClassificationFile}";
 
         public ProjectManager(string defaultFolderKey, string dbName)
         {
             DefaultFolderKey = defaultFolderKey;
             DbName = dbName;
+        }
 
-            if (string.IsNullOrEmpty(ProjectFolderPath))
+        private void BuildNewProject()
+        {
+            // Check if directory has content
+            if (Directory.EnumerateFileSystemEntries(ProjectFolderPath).Any())
             {
-                ProjectFolderPath = Application.StartupPath;
-                CreateProjectFolders();
-                CreateProjectFiles();
-
+                throw new InvalidOperationException("Directory has to be emty in order to build a new project");
             }
+
+            ProjectFolderPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            CreateProjectFolders();
+            CreateProjectFiles();
         }
 
         private void CreateProjectFiles()

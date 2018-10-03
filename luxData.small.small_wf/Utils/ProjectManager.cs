@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,8 +21,8 @@ namespace luxData.small.small_wf.Utils
         string BackupFolderPath { get; }
 
 
-        bool RestoreBackup(string path);
-        bool SetDefaultClassification(string path);
+        void RestoreBackup(string path);
+        void SetDefaultClassification(string path);
         void PersistDefaultFolder();
 
     }
@@ -49,7 +50,7 @@ namespace luxData.small.small_wf.Utils
         public string DbFolderPath { get; }
         public string DbFilePath => $@"{DbFolderPath}\{DbName}";
         public string ClassificationFolderPath { get; }
-        public string ClassificationFilePath => $@"{ClassificationFolderPath}\{}"
+        public string ClassificationFilePath => $@"{ClassificationFolderPath}\{ClassificationFile}";
         public string BackupFolderPath { get; }
         public string DefaultFolderKey { get; }
 
@@ -80,12 +81,36 @@ namespace luxData.small.small_wf.Utils
             Directory.CreateDirectory(ClassificationFolderPath);
         }
 
-        public bool RestoreBackup(string path)
+        public void RestoreBackup(string path)
         {
-            throw new NotImplementedException();
+            if (!File.Exists(path))
+            {
+                throw new FileNotFoundException("Could not find specified file");
+            }
+            if (Path.GetExtension(path) != ".json")
+            {
+                throw new ArgumentOutOfRangeException("File must be a json file");
+            }
+
+            DeleteDbFolderContent();
+            ZipFile.ExtractToDirectory(path, DbFolderPath);
         }
 
-        public bool SetDefaultClassification(string path)
+        private void DeleteDbFolderContent()
+        {
+            DirectoryInfo di = new DirectoryInfo(DbFolderPath);
+
+            foreach (FileInfo file in di.GetFiles())
+            {
+                file.Delete();
+            }
+            foreach (DirectoryInfo dir in di.GetDirectories())
+            {
+                dir.Delete(true);
+            }
+        }
+
+        public void SetDefaultClassification(string path)
         {
             throw new NotImplementedException();
         }

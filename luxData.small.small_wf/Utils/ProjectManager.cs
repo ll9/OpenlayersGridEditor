@@ -23,8 +23,6 @@ namespace luxData.small.small_wf.Utils
 
         void RestoreBackup(string path);
         void SetDefaultClassification(string path);
-        void PersistDefaultFolder();
-
     }
 
     /// <summary>
@@ -83,6 +81,19 @@ namespace luxData.small.small_wf.Utils
 
         public void RestoreBackup(string path)
         {
+            CheckJsonFile(path);
+
+            DeleteDbFolderContent();
+            ZipFile.ExtractToDirectory(path, DbFolderPath);
+        }
+
+        /// <summary>
+        /// Checks if the specified file exists and if it is a valid json file
+        /// If it isn't exceptions will be thrown
+        /// </summary>
+        /// <param name="path"></param>
+        private static void CheckJsonFile(string path)
+        {
             if (!File.Exists(path))
             {
                 throw new FileNotFoundException("Could not find specified file");
@@ -91,9 +102,6 @@ namespace luxData.small.small_wf.Utils
             {
                 throw new ArgumentOutOfRangeException("File must be a json file");
             }
-
-            DeleteDbFolderContent();
-            ZipFile.ExtractToDirectory(path, DbFolderPath);
         }
 
         private void DeleteDbFolderContent()
@@ -112,12 +120,8 @@ namespace luxData.small.small_wf.Utils
 
         public void SetDefaultClassification(string path)
         {
-            throw new NotImplementedException();
-        }
-
-        public void PersistDefaultFolder()
-        {
-            throw new NotImplementedException();
+            CheckJsonFile(path);
+            File.Copy(path, ClassificationFilePath, true);
         }
     }
 }

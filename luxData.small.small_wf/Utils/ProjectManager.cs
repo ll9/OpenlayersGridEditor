@@ -17,9 +17,6 @@ namespace luxData.small.small_wf.Utils
         string BackupFolderPath { get; set; }
 
 
-        bool LoadProject();
-        bool LoadProject(string path);
-        bool CreateProject(string path);
         bool RestoreBackup(string path);
         bool SetDefaultClassification(string path);
         void PersistDefaultFolder();
@@ -40,26 +37,8 @@ namespace luxData.small.small_wf.Utils
 
         public ProjectManager(string setting, string dbFolderPath, string dbName)
         {
-            if (!LoadProject())
-            {
-                CreateProject(Application.StartupPath);
-            }
         }
 
-        public bool CreateProject(string path)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool LoadProject()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool LoadProject(string path)
-        {
-            throw new NotImplementedException();
-        }
 
         public bool RestoreBackup(string path)
         {

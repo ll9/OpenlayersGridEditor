@@ -1,0 +1,10 @@
+BACKUPS\
+	Backup1.zip
+	Backup2.zip
+DB\
+	lds.sqlite
+	settings.json
+	CLASSIFICATION\
+		default.json
+		classification1.json
+		classification2.json

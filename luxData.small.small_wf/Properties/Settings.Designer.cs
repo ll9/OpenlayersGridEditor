@@ -34,5 +34,53 @@ namespace luxData.small.small_wf.Properties {
                 this["defaultFolder"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("default.json")]
+        public string classificationName {
+            get {
+                return ((string)(this["classificationName"]));
+            }
+            set {
+                this["classificationName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("lds.sqlite")]
+        public string dbName {
+            get {
+                return ((string)(this["dbName"]));
+            }
+            set {
+                this["dbName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("LDS_FEATURES")]
+        public string tableName {
+            get {
+                return ((string)(this["tableName"]));
+            }
+            set {
+                this["tableName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("geometry")]
+        public string geometryColumn {
+            get {
+                return ((string)(this["geometryColumn"]));
+            }
+            set {
+                this["geometryColumn"] = value;
+            }
+        }
     }
 }

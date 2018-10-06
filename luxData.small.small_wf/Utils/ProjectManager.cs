@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -29,8 +30,8 @@ namespace luxData.small.small_wf.Utils
     /// </summary>
     public class ProjectManager : IProjectManager
     {
-        private const string ClassificationFile = "default.json";
-        private const string DbName = "lds.sqlite";
+        private readonly string ClassificationFile = Properties.Settings.Default["classificationName"].ToString();
+        private readonly string DbName = Properties.Settings.Default["dbName"].ToString();
 
         public string ProjectFolderPath { get; }
         public string DbFolderPath => $@"{ProjectFolderPath}\DB";

@@ -5,5 +5,17 @@
     <Setting Name="defaultFolder" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="classificationName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">default.json</Value>
+    </Setting>
+    <Setting Name="dbName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">lds.sqlite</Value>
+    </Setting>
+    <Setting Name="tableName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">LDS_FEATURES</Value>
+    </Setting>
+    <Setting Name="geometryColumn" Type="System.String" Scope="User">
+      <Value Profile="(Default)">geometry</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -18,8 +18,8 @@ namespace luxData.small.small_wf.Utils
 
     class SpatialiteManager : ISpatialiteManager
     {
-        public const string GeometryColumn = "geometry";
-        public const string TableName = "LDS_FEATURES";
+        public readonly string GeometryColumn = Properties.Settings.Default["geometryColumn"].ToString();
+        public readonly string TableName = Properties.Settings.Default["tableName"].ToString();
 
         public string DbPath { get; }
 

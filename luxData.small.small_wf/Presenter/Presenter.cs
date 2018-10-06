@@ -64,6 +64,7 @@ namespace luxData.small.small_wf.Presenter
             {
                 MapManager.AddFeatureToMap(row[geometryColumn].ToString());
             }
+            MapManager.FitZoom();
         }
 
         private void View_ViewClosing(object sender, EventArgs e)

@@ -1,5 +1,6 @@
 class LayerManager {
 	constructor(map) {
+        this.map = map;
 		this.source = new ol.source.Vector();
 		this.layer = new ol.layer.Vector({source: this.source, projection : 'EPSG:4326'})
 		this.format = new ol.format.GeoJSON({featureProjection: 'EPSG:3857'});
@@ -23,5 +24,12 @@ class LayerManager {
 	addFeatures(geoJsonFeatureCollection) {
 		let featureCollection = this.format.readFeatures(geoJsonFeatureCollection);
 		this.source.addFeatures(featureCollection);
-	}
+    }
+    
+    /**
+     * Zooms to the extent of the vector layer
+     */
+    fitZoom() {
+        this.map.getView().fit(this.source.getExtent(), {duration: 1000})
+    }
 }

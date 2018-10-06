@@ -25,5 +25,13 @@ namespace luxData.small.small_wf.Utils
         {
             Browser.ExecuteScriptAsync($"layerManager.addFeature({feature})");
         }
+
+        /// <summary>
+        /// Zooms to the extend of the vector layer
+        /// </summary>
+        public void FitZoom()
+        {
+            Browser.ExecuteScriptAsync($"layerManager.fitZoom()");
+        }
     }
 }

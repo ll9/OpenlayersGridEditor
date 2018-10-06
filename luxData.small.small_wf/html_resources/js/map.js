@@ -10,3 +10,5 @@ const map = new ol.Map({
         zoom: 4
     })
 });
+
+const layerManager = new LayerManager(map);

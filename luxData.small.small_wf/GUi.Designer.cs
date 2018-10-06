@@ -77,6 +77,7 @@
             this.DataGrid.Name = "DataGrid";
             this.DataGrid.Size = new System.Drawing.Size(800, 156);
             this.DataGrid.TabIndex = 0;
+            this.DataGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DataGrid_KeyDown);
             // 
             // GUI
             // 

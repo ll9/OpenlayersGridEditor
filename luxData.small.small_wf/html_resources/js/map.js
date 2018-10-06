@@ -12,3 +12,4 @@ const map = new ol.Map({
 });
 
 const layerManager = new LayerManager(map);
+const featureTranslator = new FeatureTranslator(map);

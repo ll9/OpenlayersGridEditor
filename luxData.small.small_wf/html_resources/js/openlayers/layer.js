@@ -2,7 +2,7 @@ class LayerManager {
 	constructor(map) {
         this.map = map;
 		this.source = new ol.source.Vector();
-		this.layer = new ol.layer.Vector({source: this.source, projection : 'EPSG:4326'})
+		this.layer = new ol.layer.Vector({source: this.source})
 		this.format = new ol.format.GeoJSON({featureProjection: 'EPSG:3857'});
 
 		map.addLayer(this.layer)

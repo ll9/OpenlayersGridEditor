@@ -53,7 +53,7 @@ namespace luxData.small.small_wf
         {
             if (e.IsLoading == false)
             {
-                BrowserLoadingComplete(sender, e);
+                chromeBrowser.Invoke((Action)(() => BrowserLoadingComplete(sender, e)));
             }
         }
 

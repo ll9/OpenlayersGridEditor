@@ -9,13 +9,16 @@
 
     initEvents() {
         this.translate.on('translateend', (event) => {
-            console.log(event)
             let feature = event.features.item(0);
             let id = feature.getId();
-            let lonlat = ol.proj.transform(event.coordinate, 'EPSG:3857', 'EPSG:4326');
+            let format = new ol.format.WKT()
 
-            console.log(id);
-            console.log(lonlat);
+            let wkt = format.writeFeature(feature, {
+                dataProjection: 'EPSG:4326',
+                featureProjection: 'EPSG:3857'
+              })
+
+            cefCustomObject.updateGeometry(id, wkt);
         })
     }
 }

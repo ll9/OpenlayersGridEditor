@@ -1,5 +1,6 @@
 ﻿using CefSharp;
 using CefSharp.WinForms;
+using luxData.small.small_wf.Utils;
 using luxData.small.small_wf.Views;
 using System;
 using System.Collections.Generic;
@@ -15,13 +16,15 @@ namespace luxData.small.small_wf
 {
     public partial class GUI : Form, IView
     {
+        private Presenter.Presenter presenter;
+
         public ChromiumWebBrowser chromeBrowser { get; set; }
 
         public GUI()
         {
             InitializeComponent();
+            presenter = new Presenter.Presenter(this);
             InitializeChromium();
-            new Presenter.Presenter(this);
         }
 
         public object DataSource
@@ -38,11 +41,13 @@ namespace luxData.small.small_wf
         public void InitializeChromium()
         {
             CefSettings settings = new CefSettings();
+            CefSharpSettings.LegacyJavascriptBindingEnabled = true;
             // Initialize cef with the provided settings
             Cef.Initialize(settings);
             // Create a browser component
             var page = $@"{Application.StartupPath}\html_resources\index.html";
             chromeBrowser = new ChromiumWebBrowser(page);
+            chromeBrowser.RegisterJsObject("cefCustomObject", new CefManager(presenter, chromeBrowser));
             // Add it to the form and fill it to the form window.
             GridSplitContainer.Panel1.Controls.Add(chromeBrowser);
             chromeBrowser.Dock = DockStyle.Fill;

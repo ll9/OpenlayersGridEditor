@@ -17,6 +17,7 @@ namespace luxData.small.small_wf.Presenter
         public ProjectManager ProjectManager { get; set; }
         public SpatialiteManager SpatialiteManager { get; set; }
         public MapManager MapManager { get; set; }
+        public CefManager CefManager { get; set; }
         public DataTable DataTable { get; set; }
         public string ProjectFolderPath
         {

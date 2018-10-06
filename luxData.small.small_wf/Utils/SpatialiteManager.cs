@@ -18,6 +18,7 @@ namespace luxData.small.small_wf.Utils
 
     class SpatialiteManager : ISpatialiteManager
     {
+        public readonly string IdColumn = Properties.Settings.Default["idColumn"].ToString();
         public readonly string GeometryColumn = Properties.Settings.Default["geometryColumn"].ToString();
         public readonly string TableName = Properties.Settings.Default["tableName"].ToString();
 
@@ -42,24 +43,6 @@ namespace luxData.small.small_wf.Utils
             return connection;
         }
 
-        /// <summary>
-        /// Gets dataTable containing all properties
-        /// Geometrie is obtained as geojson
-        /// </summary>
-        /// <returns></returns>
-        public DataTable GetDataTable()
-        {
-            var dataTable = new DataTable();
-            var query = GetSelectQuery();
-
-            using (var connection = GetConnection())
-            using (var adapter = new SQLiteDataAdapter(query, connection))
-            {
-                adapter.Fill(dataTable);
-            }
-
-            return dataTable;
-        }
 
         private string GetSelectQuery()
         {
@@ -86,6 +69,25 @@ namespace luxData.small.small_wf.Utils
         }
 
         /// <summary>
+        /// Gets dataTable containing all properties
+        /// Geometrie is obtained as geojson
+        /// </summary>
+        /// <returns></returns>
+        public DataTable GetDataTable()
+        {
+            var dataTable = new DataTable();
+            var query = GetSelectQuery();
+
+            using (var connection = GetConnection())
+            using (var adapter = new SQLiteDataAdapter(query, connection))
+            {
+                adapter.Fill(dataTable);
+            }
+
+            return dataTable;
+        }
+
+        /// <summary>
         /// Saves changes from the datatable to the database
         /// does not include Geometry (needs to be handled seperately)
         /// </summary>
@@ -106,6 +108,22 @@ namespace luxData.small.small_wf.Utils
 
                 adapter.Update(dataTable);
                 transaction.Commit();
+            }
+        }
+
+        /// <summary>
+        /// Updates Geometry by wkt representation
+        /// </summary>
+        /// <param name="id">id of the feature</param>
+        /// <param name="wkt">feature in wkt representation</param>
+        public void UpdateGeometry(long id, string wkt)
+        {
+            var query = $"update {TableName} set {GeometryColumn}=GeomFromText('{wkt}', 4326) where {IdColumn}={id}";
+
+            using (var connection = GetConnection())
+            using (var command = new SQLiteCommand(query, connection))
+            {
+                command.ExecuteNonQuery();
             }
         }
     }

@@ -15,13 +15,13 @@ namespace luxData.small.small_wf
 {
     public partial class GUI : Form, IView
     {
-        public ChromiumWebBrowser chromeBrowser;
+        public ChromiumWebBrowser chromeBrowser { get; set; }
 
         public GUI()
         {
             InitializeComponent();
-            new Presenter.Presenter(this);
             InitializeChromium();
+            new Presenter.Presenter(this);
         }
 
         public object DataSource
@@ -33,6 +33,7 @@ namespace luxData.small.small_wf
         }
 
         public event EventHandler ViewClosing;
+        public event EventHandler BrowserLoadingComplete;
 
         public void InitializeChromium()
         {
@@ -45,6 +46,15 @@ namespace luxData.small.small_wf
             // Add it to the form and fill it to the form window.
             GridSplitContainer.Panel1.Controls.Add(chromeBrowser);
             chromeBrowser.Dock = DockStyle.Fill;
+            chromeBrowser.LoadingStateChanged += ChromeBrowser_LoadingStateChanged;
+        }
+
+        private void ChromeBrowser_LoadingStateChanged(object sender, LoadingStateChangedEventArgs e)
+        {
+            if (e.IsLoading == false)
+            {
+                BrowserLoadingComplete(sender, e);
+            }
         }
 
         private void GUI_FormClosing(object sender, FormClosingEventArgs e)

@@ -16,6 +16,7 @@ namespace luxData.small.small_wf.Presenter
         public IView View { get; set; }
         public ProjectManager ProjectManager { get; set; }
         public SpatialiteManager SpatialiteManager { get; set; }
+        public MapManager MapManager { get; set; }
         public DataTable DataTable { get; set; }
         public string ProjectFolderPath
         {
@@ -34,6 +35,14 @@ namespace luxData.small.small_wf.Presenter
         {
             View = view;
 
+            View.ViewClosing += View_ViewClosing;
+            View.BrowserLoadingComplete += InitProjectAfterBrowserLoad;
+        }
+
+        private void InitProjectAfterBrowserLoad(object sender, EventArgs e)
+        {
+            MapManager = new MapManager(View.chromeBrowser);
+
             if (string.IsNullOrEmpty(ProjectFolderPath))
             {
                 ProjectFolderPath = Application.StartupPath;
@@ -49,7 +58,12 @@ namespace luxData.small.small_wf.Presenter
 
             LoadData();
 
-            View.ViewClosing += View_ViewClosing;
+            var geometryColumn = Properties.Settings.Default["geometryColumn"].ToString();
+
+            foreach (DataRow row in DataTable.Rows)
+            {
+                MapManager.AddFeatureToMap(row[geometryColumn].ToString());
+            }
         }
 
         private void View_ViewClosing(object sender, EventArgs e)
@@ -67,6 +81,6 @@ namespace luxData.small.small_wf.Presenter
             View.DataSource = DataTable;
         }
 
-        
+
     }
 }

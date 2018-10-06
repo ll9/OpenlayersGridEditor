@@ -11,24 +11,11 @@ using System.Windows.Forms;
 
 namespace luxData.small.small_wf.Utils
 {
-    public interface IProjectManager
-    {
-        string ProjectFolderPath { get; }
-        string DbFolderPath { get; }
-        string DbFilePath { get; }
-        string ClassificationFolderPath { get; }
-        string ClassificationFilePath { get; }
-        string BackupFolderPath { get; }
-
-
-        void RestoreBackup(string path);
-        void SetDefaultClassification(string path);
-    }
 
     /// <summary>
     /// Responsible for handling the project folder structure
     /// </summary>
-    public class ProjectManager : IProjectManager
+    public class ProjectManager
     {
         private readonly string ClassificationFile = Properties.Settings.Default["classificationName"].ToString();
         private readonly string DbName = Properties.Settings.Default["dbName"].ToString();

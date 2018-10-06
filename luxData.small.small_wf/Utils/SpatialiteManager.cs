@@ -73,7 +73,7 @@ namespace luxData.small.small_wf.Utils
                 {
                     if (dr.GetName(i) == GeometryColumn)
                     {
-                        items.Add($"AsGeoJSON({GeometryColumn}, 5, 2)");
+                        items.Add($"AsGeoJSON({GeometryColumn}, 5, 2) as {GeometryColumn}");
                     }
                     else
                     {

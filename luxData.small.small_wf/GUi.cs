@@ -52,5 +52,13 @@ namespace luxData.small.small_wf
             Cef.Shutdown();
             ViewClosing(sender, e);
         }
+
+        private void DataGrid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F12)
+            {
+                chromeBrowser.ShowDevTools();
+            }
+        }
     }
 }

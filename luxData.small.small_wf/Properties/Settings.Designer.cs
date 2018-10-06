@@ -82,5 +82,17 @@ namespace luxData.small.small_wf.Properties {
                 this["geometryColumn"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ogc_fid")]
+        public string idColumn {
+            get {
+                return ((string)(this["idColumn"]));
+            }
+            set {
+                this["idColumn"] = value;
+            }
+        }
     }
 }

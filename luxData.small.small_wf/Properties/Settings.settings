@@ -17,5 +17,8 @@
     <Setting Name="geometryColumn" Type="System.String" Scope="User">
       <Value Profile="(Default)">geometry</Value>
     </Setting>
+    <Setting Name="idColumn" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ogc_fid</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

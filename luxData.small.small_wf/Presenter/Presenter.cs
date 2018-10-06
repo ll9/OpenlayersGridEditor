@@ -59,10 +59,13 @@ namespace luxData.small.small_wf.Presenter
             LoadData();
 
             var geometryColumn = Properties.Settings.Default["geometryColumn"].ToString();
+            var idColumn = Properties.Settings.Default["idColumn"].ToString();
 
             foreach (DataRow row in DataTable.Rows)
             {
-                MapManager.AddFeatureToMap(row[geometryColumn].ToString());
+                var feature = FeatureSerializer.Serialize(idColumn, geometryColumn, row, DataTable);
+                if (feature != null)
+                    MapManager.AddFeatureToMap(feature);
             }
             MapManager.FitZoom();
         }

@@ -21,7 +21,7 @@ namespace luxData.small.small_wf.Utils
         /// Adds feature to openlayers
         /// </summary>
         /// <param name="feature">Feature in geosjon format</param>
-        public void AddFeatureToMap(string feature)
+        public void AddFeatureToMap(object feature)
         {
             Browser.ExecuteScriptAsync($"layerManager.addFeature({feature})");
         }

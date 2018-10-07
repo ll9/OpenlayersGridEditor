@@ -45,7 +45,7 @@ namespace luxData.small.small_wf.Presenter
         private void View_AddingColumn(object sender, ViewModels.HeaderClickViewModel e)
         {
             SpatialiteManager.AddColumn(e.AddColumnViewModel.ColumnName, e.AddColumnViewModel.DataType);
-            DataTable.Columns.Add(e.AddColumnViewModel.ColumnName, e.AddColumnViewModel.DataType._GetType());
+            DataTable.Columns.Add(e.AddColumnViewModel.ColumnName, e.AddColumnViewModel.DataType.DataTypeToType());
         }
 
         private void InitProjectAfterBrowserLoad(object sender, EventArgs e)

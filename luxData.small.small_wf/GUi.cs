@@ -83,6 +83,8 @@ namespace luxData.small.small_wf
 
         private void DataGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            if (e.Button == MouseButtons.Left) return;
+
             HeaderClickViewModel = new HeaderClickViewModel(e);
             GridHeaderMenuStrip.Show(Cursor.Position);
 

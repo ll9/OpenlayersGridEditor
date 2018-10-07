@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WizardDemo.Models;
 
 namespace luxData.small.small_wf.Presenter
 {
@@ -43,9 +44,8 @@ namespace luxData.small.small_wf.Presenter
 
         private void View_AddingColumn(object sender, ViewModels.HeaderClickViewModel e)
         {
-            MessageBox.Show(
-                string.Format("Should Insert Column at {0} with name {1} and datatype {2}",
-                e.e.ColumnIndex, e.AddColumnViewModel.ColumnName, e.AddColumnViewModel.DataType));
+            SpatialiteManager.AddColumn(e.AddColumnViewModel.ColumnName, e.AddColumnViewModel.DataType);
+            DataTable.Columns.Add(e.AddColumnViewModel.ColumnName, e.AddColumnViewModel.DataType._GetType());
         }
 
         private void InitProjectAfterBrowserLoad(object sender, EventArgs e)

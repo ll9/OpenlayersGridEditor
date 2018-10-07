@@ -10,6 +10,7 @@ namespace luxData.small.small_wf.ViewModels
     public class HeaderClickViewModel
     {
         public DataGridViewCellMouseEventArgs e;
+        public AddColumn.ViewModels.AddColumnViewModel AddColumnViewModel { get; set; }
 
         public HeaderClickViewModel(DataGridViewCellMouseEventArgs e)
         {

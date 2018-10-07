@@ -188,7 +188,16 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\source\repos\WizardDemo\WizardDemo\WizardDemo.csproj">
+      <Project>{67752DE2-B0CB-4DDE-8B74-433560BEA737}</Project>
+      <Name>WizardDemo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AddColumn\AddColumn.csproj">
+      <Project>{57B1B0EE-92EF-4907-9CE1-CFD7CEC09C41}</Project>
+      <Name>AddColumn</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

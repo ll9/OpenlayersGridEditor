@@ -27,7 +27,6 @@ namespace AddColumn
         {
             if (ValidateResult())
             {
-                MessageBox.Show($"Should add prop with colname {AddColumnViewModel.ColumnName} and Datatye {AddColumnViewModel.DataType}");
                 DialogResult = DialogResult.OK;
                 Close();
             }

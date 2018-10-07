@@ -67,7 +67,6 @@
     <EmbeddedResource Include="Views\AddColumnDialog.resx">
       <DependentUpon>AddColumnDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Properties\DataSources\AddColumn.ViewModels.AddColumnViewModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -38,6 +38,14 @@ namespace luxData.small.small_wf.Presenter
 
             View.ViewClosing += View_ViewClosing;
             View.BrowserLoadingComplete += InitProjectAfterBrowserLoad;
+            View.AddingColumn += View_AddingColumn;
+        }
+
+        private void View_AddingColumn(object sender, ViewModels.HeaderClickViewModel e)
+        {
+            MessageBox.Show(
+                string.Format("Should Insert Column at {0} with name {1} and datatype {2}",
+                e.e.ColumnIndex, e.AddColumnViewModel.ColumnName, e.AddColumnViewModel.DataType));
         }
 
         private void InitProjectAfterBrowserLoad(object sender, EventArgs e)

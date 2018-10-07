@@ -1,4 +1,6 @@
-﻿using CefSharp.WinForms;
+﻿using AddColumn.ViewModels;
+using CefSharp.WinForms;
+using luxData.small.small_wf.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +15,6 @@ namespace luxData.small.small_wf.Views
         ChromiumWebBrowser chromeBrowser { get; }
         event EventHandler ViewClosing;
         event EventHandler BrowserLoadingComplete;
+        event EventHandler<HeaderClickViewModel> AddingColumn;
     }
 }

@@ -1,4 +1,6 @@
-﻿using CefSharp;
+﻿using AddColumn;
+using AddColumn.ViewModels;
+using CefSharp;
 using CefSharp.WinForms;
 using luxData.small.small_wf.Utils;
 using luxData.small.small_wf.ViewModels;
@@ -39,6 +41,7 @@ namespace luxData.small.small_wf
 
         public event EventHandler ViewClosing;
         public event EventHandler BrowserLoadingComplete;
+        public event EventHandler<HeaderClickViewModel> AddingColumn;
 
         public void InitializeChromium()
         {
@@ -87,7 +90,12 @@ namespace luxData.small.small_wf
 
         private void AddColumnToolStripItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show($"Should add column at {HeaderClickViewModel.e.ColumnIndex}");
+            var dialog = new AddColumnDialog();
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                HeaderClickViewModel.AddColumnViewModel = dialog.AddColumnViewModel;
+                AddingColumn(sender, HeaderClickViewModel);
+            }
         }
 
         private void DeleteColumnToolStripItem_Click(object sender, EventArgs e)

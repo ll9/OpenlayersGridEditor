@@ -25,9 +25,22 @@ namespace AddColumn
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show($"Should add prop with colname {AddColumnViewModel.ColumnName} and Datatye {AddColumnViewModel.DataType}");
-            DialogResult = DialogResult.OK;
-            Close();
+            if (ValidateResult())
+            {
+                MessageBox.Show($"Should add prop with colname {AddColumnViewModel.ColumnName} and Datatye {AddColumnViewModel.DataType}");
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+        }
+
+        private bool ValidateResult()
+        {
+            if (string.IsNullOrEmpty(AddColumnViewModel.ColumnName))
+            {
+                MessageBox.Show("Column Name may not be empty");
+                return false;
+            }
+            return true;
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

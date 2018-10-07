@@ -107,6 +107,7 @@
     <Compile Include="Utils\MapManager.cs" />
     <Compile Include="Utils\ProjectManager.cs" />
     <Compile Include="Utils\SpatialiteManager.cs" />
+    <Compile Include="ViewModels\HeaderClickViewModel.cs" />
     <Compile Include="Views\IView.cs" />
     <EmbeddedResource Include="GUi.resx">
       <DependentUpon>GUI.cs</DependentUpon>

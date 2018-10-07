@@ -28,15 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GridSplitContainer = new System.Windows.Forms.SplitContainer();
             this.DataGrid = new System.Windows.Forms.DataGridView();
+            this.GridHeaderMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.AddColumnToolStripItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DeleteColumnToolStripItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridSplitContainer)).BeginInit();
             this.GridSplitContainer.Panel2.SuspendLayout();
             this.GridSplitContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGrid)).BeginInit();
+            this.GridHeaderMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -77,7 +82,30 @@
             this.DataGrid.Name = "DataGrid";
             this.DataGrid.Size = new System.Drawing.Size(800, 156);
             this.DataGrid.TabIndex = 0;
+            this.DataGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGrid_ColumnHeaderMouseClick);
             this.DataGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DataGrid_KeyDown);
+            // 
+            // GridHeaderMenuStrip
+            // 
+            this.GridHeaderMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AddColumnToolStripItem,
+            this.DeleteColumnToolStripItem});
+            this.GridHeaderMenuStrip.Name = "GridHeaderMenuStrip";
+            this.GridHeaderMenuStrip.Size = new System.Drawing.Size(181, 70);
+            // 
+            // AddColumnToolStripItem
+            // 
+            this.AddColumnToolStripItem.Name = "AddColumnToolStripItem";
+            this.AddColumnToolStripItem.Size = new System.Drawing.Size(180, 22);
+            this.AddColumnToolStripItem.Text = "Spalte einfügen";
+            this.AddColumnToolStripItem.Click += new System.EventHandler(this.AddColumnToolStripItem_Click);
+            // 
+            // DeleteColumnToolStripItem
+            // 
+            this.DeleteColumnToolStripItem.Name = "DeleteColumnToolStripItem";
+            this.DeleteColumnToolStripItem.Size = new System.Drawing.Size(180, 22);
+            this.DeleteColumnToolStripItem.Text = "Spalte Löschen";
+            this.DeleteColumnToolStripItem.Click += new System.EventHandler(this.DeleteColumnToolStripItem_Click);
             // 
             // GUI
             // 
@@ -96,6 +124,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.GridSplitContainer)).EndInit();
             this.GridSplitContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DataGrid)).EndInit();
+            this.GridHeaderMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -107,6 +136,9 @@
         private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
         private System.Windows.Forms.SplitContainer GridSplitContainer;
         private System.Windows.Forms.DataGridView DataGrid;
+        private System.Windows.Forms.ContextMenuStrip GridHeaderMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem AddColumnToolStripItem;
+        private System.Windows.Forms.ToolStripMenuItem DeleteColumnToolStripItem;
     }
 }
 

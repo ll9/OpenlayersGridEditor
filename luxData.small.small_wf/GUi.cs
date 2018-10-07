@@ -1,6 +1,7 @@
 ﻿using CefSharp;
 using CefSharp.WinForms;
 using luxData.small.small_wf.Utils;
+using luxData.small.small_wf.ViewModels;
 using luxData.small.small_wf.Views;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace luxData.small.small_wf
     public partial class GUI : Form, IView
     {
         private Presenter.Presenter presenter;
+        public HeaderClickViewModel HeaderClickViewModel { get; set; }
 
         public ChromiumWebBrowser chromeBrowser { get; set; }
 
@@ -74,6 +76,23 @@ namespace luxData.small.small_wf
             {
                 chromeBrowser.ShowDevTools();
             }
+        }
+
+        private void DataGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            HeaderClickViewModel = new HeaderClickViewModel(e);
+            GridHeaderMenuStrip.Show(Cursor.Position);
+
+        }
+
+        private void AddColumnToolStripItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show($"Should add column at {HeaderClickViewModel.e.ColumnIndex}");
+        }
+
+        private void DeleteColumnToolStripItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show($"Should delete column at {HeaderClickViewModel.e.ColumnIndex}");
         }
     }
 }

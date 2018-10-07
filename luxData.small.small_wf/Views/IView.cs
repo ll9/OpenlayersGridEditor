@@ -16,5 +16,6 @@ namespace luxData.small.small_wf.Views
         event EventHandler ViewClosing;
         event EventHandler BrowserLoadingComplete;
         event EventHandler<HeaderClickViewModel> AddingColumn;
+        event EventHandler<string> DeletingColumn;
     }
 }

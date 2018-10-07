@@ -40,6 +40,12 @@ namespace luxData.small.small_wf.Presenter
             View.ViewClosing += View_ViewClosing;
             View.BrowserLoadingComplete += InitProjectAfterBrowserLoad;
             View.AddingColumn += View_AddingColumn;
+            View.DeletingColumn += View_DeletingColumn;
+        }
+
+        private void View_DeletingColumn(object sender, string columnName)
+        {
+            MessageBox.Show("Should delete column " + columnName);
         }
 
         private void View_AddingColumn(object sender, ViewModels.HeaderClickViewModel e)

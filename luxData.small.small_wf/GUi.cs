@@ -42,6 +42,7 @@ namespace luxData.small.small_wf
         public event EventHandler ViewClosing;
         public event EventHandler BrowserLoadingComplete;
         public event EventHandler<HeaderClickViewModel> AddingColumn;
+        public event EventHandler<string> DeletingColumn;
 
         public void InitializeChromium()
         {
@@ -102,7 +103,8 @@ namespace luxData.small.small_wf
 
         private void DeleteColumnToolStripItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show($"Should delete column at {HeaderClickViewModel.e.ColumnIndex}");
+            var columnName = DataGrid.Columns[HeaderClickViewModel.e.ColumnIndex].Name.ToString();
+            DeletingColumn(sender, columnName);
         }
     }
 }

@@ -87,6 +87,7 @@
             this.CancelButton.TabIndex = 5;
             this.CancelButton.Text = "Abbrechen";
             this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // AddColumnDialog
             // 

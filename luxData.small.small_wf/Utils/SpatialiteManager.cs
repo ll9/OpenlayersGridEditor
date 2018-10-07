@@ -5,6 +5,7 @@ using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WizardDemo.Models;
 
 namespace luxData.small.small_wf.Utils
 {
@@ -119,6 +120,18 @@ namespace luxData.small.small_wf.Utils
         public void UpdateGeometry(long id, string wkt)
         {
             var query = $"update {TableName} set {GeometryColumn}=GeomFromText('{wkt}', 4326) where {IdColumn}={id}";
+
+            using (var connection = GetConnection())
+            using (var command = new SQLiteCommand(query, connection))
+            {
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void AddColumn(string columnName, DataType dataType)
+        {
+            var sqlType = dataType.GetSqlDataType();
+            var query = $"ALTER TABLE {TableName} ADD {columnName} {sqlType}";
 
             using (var connection = GetConnection())
             using (var command = new SQLiteCommand(query, connection))

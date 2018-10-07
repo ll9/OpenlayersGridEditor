@@ -139,5 +139,40 @@ namespace luxData.small.small_wf.Utils
                 command.ExecuteNonQuery();
             }
         }
+
+        /// <summary>
+        /// Drops Column in the db
+        /// IMPORTANT: in sqlite columns cannot directly be droped
+        /// As a result the table will have to be cloned without the column to be droped
+        /// </summary>
+        /// <param name="columnToDrop"></param>
+        public void DropColumn(string columnToDrop)
+        {
+            // Rename the old table
+            var oldTable = "_" + TableName;
+            var renameQuery = $"ALTER TABLE {TableName} RENAME TO {oldTable}";
+            ExecuteQuery(renameQuery);
+
+            // Clones table without unwanted Column
+            var cloneQuery = $"SELECT CloneTable('main', '{oldTable}', '{TableName}', 1, '::ignore::{columnToDrop}')";
+            ExecuteQuery(cloneQuery);
+
+            // Drop old Table
+            var dropQuery = $"DROP TABLE {oldTable}";
+            ExecuteQuery(dropQuery);
+        }
+
+        /// <summary>
+        /// Executes a simple Query
+        /// </summary>
+        /// <param name="query"></param>
+        private void ExecuteQuery(string query)
+        {
+            using (var connection = GetConnection())
+            using (var command = new SQLiteCommand(query, connection))
+            {
+                command.ExecuteNonQuery();
+            }
+        }
     }
 }

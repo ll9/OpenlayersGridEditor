@@ -45,7 +45,8 @@ namespace luxData.small.small_wf.Presenter
 
         private void View_DeletingColumn(object sender, string columnName)
         {
-            MessageBox.Show("Should delete column " + columnName);
+            SpatialiteManager.DropColumn(columnName);
+            DataTable.Columns.Remove(columnName);
         }
 
         private void View_AddingColumn(object sender, ViewModels.HeaderClickViewModel e)

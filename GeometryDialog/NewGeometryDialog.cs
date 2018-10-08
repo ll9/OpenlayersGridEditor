@@ -10,17 +10,16 @@ using System.Windows.Forms;
 
 namespace GeometryDialog
 {
-    public partial class GeometryDialog : Form
+    public partial class NewGeometryDialog : Form
     {
-        public GeometryDialog()
+        public NewGeometryDialog()
         {
             InitializeComponent();
         }
 
-        private void NeuButton_Click(object sender, EventArgs e)
+        private void AddButton_Click(object sender, EventArgs e)
         {
-            var dialog = new NewGeometryDialog();
-            dialog.ShowDialog();
+            PropertiesFlowPanel.Controls.Add(new UserControl1());
         }
     }
 }

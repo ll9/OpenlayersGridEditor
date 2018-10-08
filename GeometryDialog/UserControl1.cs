@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,17 +10,11 @@ using System.Windows.Forms;
 
 namespace GeometryDialog
 {
-    public partial class GeometryDialog : Form
+    public partial class UserControl1 : UserControl
     {
-        public GeometryDialog()
+        public UserControl1()
         {
             InitializeComponent();
-        }
-
-        private void NeuButton_Click(object sender, EventArgs e)
-        {
-            var dialog = new NewGeometryDialog();
-            dialog.ShowDialog();
         }
     }
 }

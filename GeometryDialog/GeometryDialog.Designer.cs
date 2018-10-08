@@ -71,6 +71,7 @@
             this.NeuButton.TabIndex = 3;
             this.NeuButton.Text = "Neu";
             this.NeuButton.UseVisualStyleBackColor = true;
+            this.NeuButton.Click += new System.EventHandler(this.NeuButton_Click);
             // 
             // GeometryDialog
             // 

@@ -38,6 +38,7 @@
             this.DeleteColumnToolStripItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UpdateButton = new System.Windows.Forms.Button();
             this.FillButton = new System.Windows.Forms.Button();
+            this.AddRowButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridSplitContainer)).BeginInit();
             this.GridSplitContainer.Panel1.SuspendLayout();
@@ -72,6 +73,7 @@
             // 
             // GridSplitContainer.Panel1
             // 
+            this.GridSplitContainer.Panel1.Controls.Add(this.AddRowButton);
             this.GridSplitContainer.Panel1.Controls.Add(this.FillButton);
             this.GridSplitContainer.Panel1.Controls.Add(this.UpdateButton);
             // 
@@ -135,6 +137,16 @@
             this.FillButton.UseVisualStyleBackColor = true;
             this.FillButton.Click += new System.EventHandler(this.FillButton_Click);
             // 
+            // AddRowButton
+            // 
+            this.AddRowButton.Location = new System.Drawing.Point(645, 201);
+            this.AddRowButton.Name = "AddRowButton";
+            this.AddRowButton.Size = new System.Drawing.Size(75, 23);
+            this.AddRowButton.TabIndex = 2;
+            this.AddRowButton.Text = "Add Row";
+            this.AddRowButton.UseVisualStyleBackColor = true;
+            this.AddRowButton.Click += new System.EventHandler(this.AddRowButton_Click);
+            // 
             // GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -170,6 +182,7 @@
         private System.Windows.Forms.ToolStripMenuItem DeleteColumnToolStripItem;
         private System.Windows.Forms.Button FillButton;
         private System.Windows.Forms.Button UpdateButton;
+        private System.Windows.Forms.Button AddRowButton;
     }
 }
 

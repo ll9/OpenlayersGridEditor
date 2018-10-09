@@ -116,5 +116,11 @@ namespace luxData.small.small_wf
         {
             presenter.SpatialiteManager.UpdateDataTable(presenter.DataTable);
         }
+
+        private void AddRowButton_Click(object sender, EventArgs e)
+        {
+            var row = presenter.DataTable.NewRow();
+            presenter.DataTable.Rows.Add(row);
+        }
     }
 }

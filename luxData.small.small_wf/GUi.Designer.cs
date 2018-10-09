@@ -36,8 +36,11 @@
             this.GridHeaderMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.AddColumnToolStripItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DeleteColumnToolStripItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.UpdateButton = new System.Windows.Forms.Button();
+            this.FillButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridSplitContainer)).BeginInit();
+            this.GridSplitContainer.Panel1.SuspendLayout();
             this.GridSplitContainer.Panel2.SuspendLayout();
             this.GridSplitContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGrid)).BeginInit();
@@ -67,6 +70,11 @@
             this.GridSplitContainer.Name = "GridSplitContainer";
             this.GridSplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
+            // GridSplitContainer.Panel1
+            // 
+            this.GridSplitContainer.Panel1.Controls.Add(this.FillButton);
+            this.GridSplitContainer.Panel1.Controls.Add(this.UpdateButton);
+            // 
             // GridSplitContainer.Panel2
             // 
             this.GridSplitContainer.Panel2.Controls.Add(this.DataGrid);
@@ -91,21 +99,39 @@
             this.AddColumnToolStripItem,
             this.DeleteColumnToolStripItem});
             this.GridHeaderMenuStrip.Name = "GridHeaderMenuStrip";
-            this.GridHeaderMenuStrip.Size = new System.Drawing.Size(181, 70);
+            this.GridHeaderMenuStrip.Size = new System.Drawing.Size(157, 48);
             // 
             // AddColumnToolStripItem
             // 
             this.AddColumnToolStripItem.Name = "AddColumnToolStripItem";
-            this.AddColumnToolStripItem.Size = new System.Drawing.Size(180, 22);
+            this.AddColumnToolStripItem.Size = new System.Drawing.Size(156, 22);
             this.AddColumnToolStripItem.Text = "Spalte einfügen";
             this.AddColumnToolStripItem.Click += new System.EventHandler(this.AddColumnToolStripItem_Click);
             // 
             // DeleteColumnToolStripItem
             // 
             this.DeleteColumnToolStripItem.Name = "DeleteColumnToolStripItem";
-            this.DeleteColumnToolStripItem.Size = new System.Drawing.Size(180, 22);
+            this.DeleteColumnToolStripItem.Size = new System.Drawing.Size(156, 22);
             this.DeleteColumnToolStripItem.Text = "Spalte Löschen";
             this.DeleteColumnToolStripItem.Click += new System.EventHandler(this.DeleteColumnToolStripItem_Click);
+            // 
+            // UpdateButton
+            // 
+            this.UpdateButton.Location = new System.Drawing.Point(645, 108);
+            this.UpdateButton.Name = "UpdateButton";
+            this.UpdateButton.Size = new System.Drawing.Size(75, 23);
+            this.UpdateButton.TabIndex = 0;
+            this.UpdateButton.Text = "Update Db";
+            this.UpdateButton.UseVisualStyleBackColor = true;
+            // 
+            // FillButton
+            // 
+            this.FillButton.Location = new System.Drawing.Point(645, 156);
+            this.FillButton.Name = "FillButton";
+            this.FillButton.Size = new System.Drawing.Size(75, 23);
+            this.FillButton.TabIndex = 1;
+            this.FillButton.Text = "Fill DataTable";
+            this.FillButton.UseVisualStyleBackColor = true;
             // 
             // GUI
             // 
@@ -120,6 +146,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GUI_FormClosing);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.GridSplitContainer.Panel1.ResumeLayout(false);
             this.GridSplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GridSplitContainer)).EndInit();
             this.GridSplitContainer.ResumeLayout(false);
@@ -139,6 +166,8 @@
         private System.Windows.Forms.ContextMenuStrip GridHeaderMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem AddColumnToolStripItem;
         private System.Windows.Forms.ToolStripMenuItem DeleteColumnToolStripItem;
+        private System.Windows.Forms.Button FillButton;
+        private System.Windows.Forms.Button UpdateButton;
     }
 }
 

@@ -123,6 +123,7 @@
             this.UpdateButton.TabIndex = 0;
             this.UpdateButton.Text = "Update Db";
             this.UpdateButton.UseVisualStyleBackColor = true;
+            this.UpdateButton.Click += new System.EventHandler(this.UpdateButton_Click);
             // 
             // FillButton
             // 
@@ -132,6 +133,7 @@
             this.FillButton.TabIndex = 1;
             this.FillButton.Text = "Fill DataTable";
             this.FillButton.UseVisualStyleBackColor = true;
+            this.FillButton.Click += new System.EventHandler(this.FillButton_Click);
             // 
             // GUI
             // 

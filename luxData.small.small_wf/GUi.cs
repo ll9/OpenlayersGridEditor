@@ -106,5 +106,15 @@ namespace luxData.small.small_wf
             var columnName = DataGrid.Columns[HeaderClickViewModel.e.ColumnIndex].Name.ToString();
             DeletingColumn(sender, columnName);
         }
+
+        private void UpdateButton_Click(object sender, EventArgs e)
+        {
+            presenter.SpatialiteManager.Update(presenter.DataTable);
+        }
+
+        private void FillButton_Click(object sender, EventArgs e)
+        {
+            presenter.SpatialiteManager.UpdateDataTable(presenter.DataTable);
+        }
     }
 }

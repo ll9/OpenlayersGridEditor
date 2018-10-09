@@ -84,6 +84,13 @@ namespace luxData.small.small_wf.Utils
             {
                 adapter.Fill(dataTable);
             }
+            dataTable.PrimaryKey = new DataColumn[] { dataTable.Columns["ogc_fid"] };
+            dataTable.Columns["ogc_fid"].AutoIncrement = true;
+            var max = dataTable.Rows.Cast<DataRow>()
+                .Select(row => row.Field<long>("ogc_fid"))
+                .OrderByDescending(row => row)
+                .First();
+            dataTable.Columns["ogc_fid"].AutoIncrementSeed = max + 1;
 
             return dataTable;
         }

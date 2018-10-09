@@ -112,6 +112,17 @@ namespace luxData.small.small_wf.Utils
             }
         }
 
+        public void UpdateDataTable(DataTable dataTable)
+        {
+            var query = GetSelectQuery();
+
+            using (var connection = GetConnection())
+            using (var adapter = new SQLiteDataAdapter(query, connection))
+            {
+                adapter.Fill(dataTable);
+            }
+        }
+
         /// <summary>
         /// Updates Geometry by wkt representation
         /// </summary>

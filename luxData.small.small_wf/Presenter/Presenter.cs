@@ -14,6 +14,9 @@ namespace luxData.small.small_wf.Presenter
 {
     class Presenter
     {
+        public static string GeometryColumn = Properties.Settings.Default["geometryColumn"].ToString();
+        public static string  IdColumn = Properties.Settings.Default["idColumn"].ToString();
+
         public IView View { get; set; }
         public ProjectManager ProjectManager { get; set; }
         public SpatialiteManager SpatialiteManager { get; set; }
@@ -74,12 +77,10 @@ namespace luxData.small.small_wf.Presenter
 
             LoadData();
 
-            var geometryColumn = Properties.Settings.Default["geometryColumn"].ToString();
-            var idColumn = Properties.Settings.Default["idColumn"].ToString();
 
             foreach (DataRow row in DataTable.Rows)
             {
-                var feature = FeatureSerializer.Serialize(idColumn, geometryColumn, row, DataTable);
+                var feature = FeatureSerializer.Serialize(IdColumn, GeometryColumn, row, DataTable);
                 if (feature != null)
                     MapManager.AddFeatureToMap(feature);
             }

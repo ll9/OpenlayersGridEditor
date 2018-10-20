@@ -25,5 +25,13 @@ namespace luxData.small.small_wf.Utils
             Browser.Invoke((Action)(() => Presenter.SpatialiteManager.UpdateGeometry(id, wkt)));
             
         }
+
+        public void AddGeometry(object wkt)
+        {
+            Browser.Invoke((Action)(() =>
+            {
+                var row = Presenter.DataTable.NewRow();
+            }))
+        }
     }
 }

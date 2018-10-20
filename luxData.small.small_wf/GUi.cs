@@ -27,7 +27,6 @@ namespace luxData.small.small_wf
         {
             InitializeComponent();
             presenter = new Presenter.LDPresenter(this);
-            InitializeChromium();
         }
 
         public DataTable DataSource

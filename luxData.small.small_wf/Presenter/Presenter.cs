@@ -14,7 +14,7 @@ namespace luxData.small.small_wf.Presenter
     class LDPresenter
     {
         public static string GeometryColumn = Properties.Settings.Default["geometryColumn"].ToString();
-        public static string  IdColumn = Properties.Settings.Default["idColumn"].ToString();
+        public static string IdColumn = Properties.Settings.Default["idColumn"].ToString();
 
         public IView View { get; set; }
         public ProjectManager ProjectManager { get; set; }
@@ -40,9 +40,10 @@ namespace luxData.small.small_wf.Presenter
             View = view;
 
             View.ViewClosing += View_ViewClosing;
-            View.BrowserLoadingComplete += InitProjectAfterBrowserLoad;
+            View.BrowserLoadingComplete += InitializeBrowser;
             View.AddingColumn += View_AddingColumn;
             View.DeletingColumn += View_DeletingColumn;
+            InitializeProject();
 
         }
 
@@ -58,10 +59,8 @@ namespace luxData.small.small_wf.Presenter
             DataTable.Columns.Add(e.AddColumnViewModel.ColumnName, e.AddColumnViewModel.DataType.DataTypeToType());
         }
 
-        private void InitProjectAfterBrowserLoad(object sender, EventArgs e)
+        private void InitializeProject()
         {
-            MapManager = new MapManager(View.chromeBrowser);
-
             if (string.IsNullOrEmpty(ProjectFolderPath))
             {
                 ProjectFolderPath = Application.StartupPath;
@@ -76,9 +75,15 @@ namespace luxData.small.small_wf.Presenter
             SpatialiteManager = new SpatialiteManager(ProjectManager.DbFilePath);
 
             LoadData();
+            View.InitializeChromium();
             View.chromeBrowser.RegisterJsObject("cefCustomObject", new CefManager(SpatialiteManager, DataTable, View.chromeBrowser));
 
+        }
 
+
+        private void InitializeBrowser(object sender, EventArgs e)
+        {
+            MapManager = new MapManager(View.chromeBrowser);
 
             foreach (DataRow row in DataTable.Rows)
             {
@@ -95,7 +100,7 @@ namespace luxData.small.small_wf.Presenter
         }
 
         /// <summary>
-        /// Loads Data from to the View
+        /// Loads Data from the db to the View
         /// </summary>
         private void LoadData()
         {

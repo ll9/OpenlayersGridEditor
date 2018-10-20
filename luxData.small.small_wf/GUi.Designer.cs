@@ -32,16 +32,21 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GridSplitContainer = new System.Windows.Forms.SplitContainer();
-            this.DataGrid = new System.Windows.Forms.DataGridView();
             this.GridHeaderMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.AddColumnToolStripItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DeleteColumnToolStripItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.DataGrid = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridSplitContainer)).BeginInit();
             this.GridSplitContainer.Panel2.SuspendLayout();
             this.GridSplitContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGrid)).BeginInit();
             this.GridHeaderMenuStrip.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -69,21 +74,10 @@
             // 
             // GridSplitContainer.Panel2
             // 
-            this.GridSplitContainer.Panel2.Controls.Add(this.DataGrid);
+            this.GridSplitContainer.Panel2.Controls.Add(this.tabControl1);
             this.GridSplitContainer.Size = new System.Drawing.Size(800, 426);
             this.GridSplitContainer.SplitterDistance = 266;
             this.GridSplitContainer.TabIndex = 1;
-            // 
-            // DataGrid
-            // 
-            this.DataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DataGrid.Location = new System.Drawing.Point(0, 0);
-            this.DataGrid.Name = "DataGrid";
-            this.DataGrid.Size = new System.Drawing.Size(800, 156);
-            this.DataGrid.TabIndex = 0;
-            this.DataGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGrid_ColumnHeaderMouseClick);
-            this.DataGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DataGrid_KeyDown);
             // 
             // GridHeaderMenuStrip
             // 
@@ -91,21 +85,62 @@
             this.AddColumnToolStripItem,
             this.DeleteColumnToolStripItem});
             this.GridHeaderMenuStrip.Name = "GridHeaderMenuStrip";
-            this.GridHeaderMenuStrip.Size = new System.Drawing.Size(181, 70);
+            this.GridHeaderMenuStrip.Size = new System.Drawing.Size(157, 48);
             // 
             // AddColumnToolStripItem
             // 
             this.AddColumnToolStripItem.Name = "AddColumnToolStripItem";
-            this.AddColumnToolStripItem.Size = new System.Drawing.Size(180, 22);
+            this.AddColumnToolStripItem.Size = new System.Drawing.Size(156, 22);
             this.AddColumnToolStripItem.Text = "Spalte einfügen";
             this.AddColumnToolStripItem.Click += new System.EventHandler(this.AddColumnToolStripItem_Click);
             // 
             // DeleteColumnToolStripItem
             // 
             this.DeleteColumnToolStripItem.Name = "DeleteColumnToolStripItem";
-            this.DeleteColumnToolStripItem.Size = new System.Drawing.Size(180, 22);
+            this.DeleteColumnToolStripItem.Size = new System.Drawing.Size(156, 22);
             this.DeleteColumnToolStripItem.Text = "Spalte Löschen";
             this.DeleteColumnToolStripItem.Click += new System.EventHandler(this.DeleteColumnToolStripItem_Click);
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(800, 156);
+            this.tabControl1.TabIndex = 0;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.DataGrid);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(792, 130);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(192, 74);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // DataGrid
+            // 
+            this.DataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DataGrid.Location = new System.Drawing.Point(3, 3);
+            this.DataGrid.Name = "DataGrid";
+            this.DataGrid.Size = new System.Drawing.Size(786, 124);
+            this.DataGrid.TabIndex = 1;
             // 
             // GUI
             // 
@@ -123,8 +158,10 @@
             this.GridSplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GridSplitContainer)).EndInit();
             this.GridSplitContainer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.DataGrid)).EndInit();
             this.GridHeaderMenuStrip.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DataGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -135,10 +172,13 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
         private System.Windows.Forms.SplitContainer GridSplitContainer;
-        private System.Windows.Forms.DataGridView DataGrid;
         private System.Windows.Forms.ContextMenuStrip GridHeaderMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem AddColumnToolStripItem;
         private System.Windows.Forms.ToolStripMenuItem DeleteColumnToolStripItem;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.DataGridView DataGrid;
+        private System.Windows.Forms.TabPage tabPage2;
     }
 }
 

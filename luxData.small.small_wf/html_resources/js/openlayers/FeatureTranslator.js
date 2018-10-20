@@ -3,7 +3,7 @@
         this.map = map;
         this.translate = new ol.interaction.Translate();
 
-        this.map.addInteraction(this.translate)
+        // this.map.addInteraction(this.translate)
         this.initEvents();
     }
 

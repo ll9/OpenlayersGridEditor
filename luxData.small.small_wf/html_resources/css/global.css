@@ -7,7 +7,35 @@
     top: 0;
     bottom: 0;
     width: 100%;
+    z-index: -99;
 }
+
 #map {
     height: 100%;
+}
+
+.sd-container {
+    margin: 10px 50px;
+}
+
+.button-toolbar button {
+    background: white;
+    font-size: 1.5em;
+    padding: 5px;
+}
+
+label > input{ /* HIDE RADIO */
+    visibility: hidden; /* Makes input not-clickable */
+    position: absolute; /* Remove input from document flow */
+  }
+  label > input + i{ /* IMAGE STYLES */
+    cursor:pointer;
+    border:2px solid transparent;
+    background: white;
+    font-size: 1.5em;
+    padding: 5px;
+    transition: border .3s;
+  }
+  label > input:checked + i{ /* (RADIO CHECKED) IMAGE STYLES */
+    border:3px inset dodgerblue;
   }

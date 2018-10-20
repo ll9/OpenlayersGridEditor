@@ -12,7 +12,7 @@ using WizardDemo.Models;
 
 namespace luxData.small.small_wf.Presenter
 {
-    class Presenter
+    class LDPresenter
     {
         public static string GeometryColumn = Properties.Settings.Default["geometryColumn"].ToString();
         public static string  IdColumn = Properties.Settings.Default["idColumn"].ToString();
@@ -36,7 +36,7 @@ namespace luxData.small.small_wf.Presenter
             }
         }
 
-        public Presenter(IView view)
+        public LDPresenter(IView view)
         {
             View = view;
 

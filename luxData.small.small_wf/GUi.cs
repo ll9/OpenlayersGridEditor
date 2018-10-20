@@ -19,7 +19,7 @@ namespace luxData.small.small_wf
 {
     public partial class GUI : Form, IView
     {
-        private Presenter.Presenter presenter;
+        private Presenter.LDPresenter presenter;
         public HeaderClickViewModel HeaderClickViewModel { get; set; }
 
         public ChromiumWebBrowser chromeBrowser { get; set; }
@@ -27,7 +27,7 @@ namespace luxData.small.small_wf
         public GUI()
         {
             InitializeComponent();
-            presenter = new Presenter.Presenter(this);
+            presenter = new Presenter.LDPresenter(this);
             InitializeChromium();
         }
 

@@ -1,4 +1,5 @@
 ﻿using CefSharp.WinForms;
+using luxData.small.small_wf.Presenter;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +10,13 @@ namespace luxData.small.small_wf.Utils
 {
     class CefManager
     {
-        public CefManager(Presenter.Presenter presenter, ChromiumWebBrowser browser)
+        public CefManager(LDPresenter presenter, ChromiumWebBrowser browser)
         {
             Presenter = presenter;
             Browser = browser;
         }
 
-        public Presenter.Presenter Presenter { get; }
+        public LDPresenter Presenter { get; }
         public ChromiumWebBrowser Browser { get; }
 
         public void UpdateGeometry(object _id, object _wkt)
@@ -31,7 +32,10 @@ namespace luxData.small.small_wf.Utils
             Browser.Invoke((Action)(() =>
             {
                 var row = Presenter.DataTable.NewRow();
-            }))
+                var id = Convert.ToInt32(row[LDPresenter.IdColumn]);
+                Presenter.SpatialiteManager.Update(Presenter.DataTable);
+                UpdateGeometry(id, wkt);
+            }));
         }
     }
 }

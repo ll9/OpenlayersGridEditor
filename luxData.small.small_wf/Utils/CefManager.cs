@@ -2,6 +2,7 @@
 using luxData.small.small_wf.Presenter;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,20 +11,22 @@ namespace luxData.small.small_wf.Utils
 {
     class CefManager
     {
-        public CefManager(LDPresenter presenter, ChromiumWebBrowser browser)
+        public CefManager(SpatialiteManager spatialiteManager, DataTable dataTable, ChromiumWebBrowser browser)
         {
-            Presenter = presenter;
+            SpatialiteManager = spatialiteManager;
+            DataTable = dataTable;
             Browser = browser;
         }
 
-        public LDPresenter Presenter { get; }
+        public SpatialiteManager SpatialiteManager { get; }
+        public DataTable DataTable { get; }
         public ChromiumWebBrowser Browser { get; }
 
         public void UpdateGeometry(object _id, object _wkt)
         {
             var id = long.Parse(_id.ToString());
             var wkt = _wkt.ToString();
-            Browser.Invoke((Action)(() => Presenter.SpatialiteManager.UpdateGeometry(id, wkt)));
+            Browser.Invoke((Action)(() => SpatialiteManager.UpdateGeometry(id, wkt)));
             
         }
 
@@ -31,9 +34,9 @@ namespace luxData.small.small_wf.Utils
         {
             Browser.Invoke((Action)(() =>
             {
-                var row = Presenter.DataTable.NewRow();
+                var row = DataTable.NewRow();
                 var id = Convert.ToInt32(row[LDPresenter.IdColumn]);
-                Presenter.SpatialiteManager.Update(Presenter.DataTable);
+                SpatialiteManager.Update(DataTable);
                 UpdateGeometry(id, wkt);
             }));
         }

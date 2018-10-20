@@ -4,7 +4,6 @@ using CefSharp;
 using CefSharp.WinForms;
 using luxData.small.small_wf.Utils;
 using luxData.small.small_wf.ViewModels;
-using luxData.small.small_wf.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,7 +30,7 @@ namespace luxData.small.small_wf
             InitializeChromium();
         }
 
-        public object DataSource
+        public DataTable DataSource
         {
             get => throw new NotImplementedException(); set
             {
@@ -53,7 +52,6 @@ namespace luxData.small.small_wf
             // Create a browser component
             var page = $@"{Application.StartupPath}\html_resources\index.html";
             chromeBrowser = new ChromiumWebBrowser(page);
-            chromeBrowser.RegisterJsObject("cefCustomObject", new CefManager(presenter, chromeBrowser));
             // Add it to the form and fill it to the form window.
             GridSplitContainer.Panel1.Controls.Add(chromeBrowser);
             chromeBrowser.Dock = DockStyle.Fill;

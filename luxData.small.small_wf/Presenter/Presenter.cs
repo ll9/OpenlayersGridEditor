@@ -1,5 +1,4 @@
 ﻿using luxData.small.small_wf.Utils;
-using luxData.small.small_wf.Views;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -44,6 +43,7 @@ namespace luxData.small.small_wf.Presenter
             View.BrowserLoadingComplete += InitProjectAfterBrowserLoad;
             View.AddingColumn += View_AddingColumn;
             View.DeletingColumn += View_DeletingColumn;
+
         }
 
         private void View_DeletingColumn(object sender, string columnName)
@@ -76,6 +76,8 @@ namespace luxData.small.small_wf.Presenter
             SpatialiteManager = new SpatialiteManager(ProjectManager.DbFilePath);
 
             LoadData();
+            View.chromeBrowser.RegisterJsObject("cefCustomObject", new CefManager(SpatialiteManager, DataTable, View.chromeBrowser));
+
 
 
             foreach (DataRow row in DataTable.Rows)

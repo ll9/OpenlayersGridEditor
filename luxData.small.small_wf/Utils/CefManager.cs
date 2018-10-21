@@ -27,18 +27,22 @@ namespace luxData.small.small_wf.Utils
             var id = long.Parse(_id.ToString());
             var wkt = _wkt.ToString();
             Browser.Invoke((Action)(() => SpatialiteManager.UpdateGeometry(id, wkt)));
-            
+
         }
 
-        public void AddGeometry(object wkt)
+        public int AddGeometry(object wkt)
         {
+            var row = DataTable.NewRow();
+            DataTable.Rows.Add(row);
+            var id = Convert.ToInt32(row[LDPresenter.IdColumn]);
+
             Browser.Invoke((Action)(() =>
             {
-                var row = DataTable.NewRow();
-                var id = Convert.ToInt32(row[LDPresenter.IdColumn]);
                 SpatialiteManager.Update(DataTable);
                 UpdateGeometry(id, wkt);
             }));
+
+            return id;
         }
     }
 }

@@ -24,7 +24,7 @@ class InteractionManager {
         });
         this.Interactions = [
             this.SelectInteraction,
-            this.DrawInteraction, 
+            this.DrawInteraction,
             this.TranslateInteraction,
             this.ModifyInteraction
         ]
@@ -32,6 +32,7 @@ class InteractionManager {
         for (let interaction of this.Interactions) {
             this.map.addInteraction(interaction);
         }
+        this.setEvents();
     }
 
     disbaleAllInteractions() {
@@ -40,25 +41,51 @@ class InteractionManager {
         }
     }
 
+    setDraw(type) {
+        this.map.removeInteraction(this.DrawInteraction);
+        this.Interactions.splice(this.Interactions.indexOf(this.DrawInteraction), 1)
+        this.DrawInteraction = new ol.interaction.Draw({
+            source: this.source,
+            type: type
+        });
+        this.Interactions.push(this.DrawInteraction);
+        this.map.addInteraction(this.DrawInteraction);
+
+        this.DrawInteraction.on('drawend', (evt) => {
+            let feature = evt.feature;
+            let wkt = FeatureTransformer.getWkt(feature);
+            if (typeof cefCustomObject !== 'undefined') {
+                let id = cefCustomObject.addGeometry(wkt);
+                feature.setId(id);
+            }
+        })
+    }
+
+    setEvents() {
+        this.ModifyInteraction.on('modifyend', (evt) => {
+            let feature = evt.features.item(0);
+            let wkt = FeatureTransformer.getWkt(feature);
+            cefCustomObject.updateGeometry(feature.getId(), wkt);
+        })
+        this.TranslateInteraction.on('translateend', (evt) => {
+            let feature = evt.features.item(0);
+            let wkt = FeatureTransformer.getWkt(feature);
+            cefCustomObject.updateGeometry(feature.getId(), wkt);
+        })
+    }
+
+
     setInteraction(interaction) {
         if (interaction == Geometry.POINT || interaction == Geometry.LINESTRING || interaction == Geometry.POLYGON) {
             this.disbaleAllInteractions();
-            this.map.removeInteraction(this.DrawInteraction);
-            this.Interactions.splice(this.Interactions.indexOf(this.DrawInteraction), 1)
-            this.DrawInteraction = new ol.interaction.Draw({
-                source: this.source,
-                type: interaction
-            });
-            this.Interactions.push(this.DrawInteraction);
-            this.map.addInteraction(this.DrawInteraction);
+            this.setDraw(interaction);
         } else if (interaction == Geometry.HAND) {
             this.disbaleAllInteractions();
             this.SelectInteraction.setActive(true);
         } else if (interaction == Geometry.TRANSLATE) {
             this.disbaleAllInteractions();
             this.TranslateInteraction.setActive(true);
-        }
-        else if (interaction == Geometry.MODIFY) {
+        } else if (interaction == Geometry.MODIFY) {
             this.disbaleAllInteractions();
             this.SelectInteraction.setActive(true);
             this.ModifyInteraction.setActive(true);

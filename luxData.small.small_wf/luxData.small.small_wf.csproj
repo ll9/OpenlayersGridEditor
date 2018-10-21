@@ -148,7 +148,7 @@
     <Content Include="html_resources\js\app.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="html_resources\js\openlayers\FeatureTranslator.js">
+    <Content Include="html_resources\js\openlayers\FeatureTransformer.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="html_resources\js\openlayers\InteractionManager.js">

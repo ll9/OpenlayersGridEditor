@@ -84,6 +84,13 @@ namespace luxData.small.small_wf.Utils
             {
                 adapter.Fill(dataTable);
             }
+            dataTable.PrimaryKey = new DataColumn[] { dataTable.Columns[IdColumn] };
+            dataTable.Columns[IdColumn].AutoIncrement = true;
+            dataTable.Columns[IdColumn].AutoIncrementSeed = dataTable.Rows.Cast<DataRow>()
+                .Select(row => Convert.ToInt64(row["ogc_fid"]))
+                .OrderByDescending(i => i)
+                .First() + 1;
+
 
             return dataTable;
         }

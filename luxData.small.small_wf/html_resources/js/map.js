@@ -12,6 +12,5 @@ const map = new ol.Map({
 });
 
 const layerManager = new LayerManager(map);
-const featureTranslator = new FeatureTranslator(map);
 const interactionManager = new InteractionManager(map, layerManager.source);
 interactionManager.setInteraction(Geometry.HAND);

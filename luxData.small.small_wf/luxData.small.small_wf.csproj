@@ -145,7 +145,13 @@
     <Content Include="html_resources\js\map.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="html_resources\js\app.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="html_resources\js\openlayers\FeatureTranslator.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="html_resources\js\openlayers\InteractionManager.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="html_resources\js\openlayers\layer.js">

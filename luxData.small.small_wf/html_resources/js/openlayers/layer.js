@@ -1,29 +1,51 @@
+const styleCache = {};
+
 class LayerManager {
 	constructor(map) {
 		this.map = map;
 		this.source = new ol.source.Vector();
+		this.clusterSource = new ol.source.Cluster({
+			source: this.source
+		})
 		this.layer = new ol.layer.Vector({
-			source: this.source,
+			source: this.clusterSource,
 			style: function (feature) {
-				return new ol.style.Style({
-					image: new ol.style.Circle({
+				let size = 1;
+				let color = 'testcolor';
+				if (feature.get('features')) {
+					size = feature.get('features').length
+				}
+				let style = styleCache[[size, color]];
+				if (!style) {
+					console.log("style for " + size + " not found");
+					style = new ol.style.Style({
+						image: new ol.style.Circle({
+							fill: new ol.style.Fill({
+								color: "dodgerblue"
+							}),
+							stroke: new ol.style.Stroke({
+								color: "white",
+								width: 2
+							}),
+							radius: 8
+						}),
 						fill: new ol.style.Fill({
-							color: "dodgerblue"
+							color: "rgba(0, 0, 255, 0.05)"
 						}),
 						stroke: new ol.style.Stroke({
-							color: "white",
+							color: "blue",
 							width: 2
 						}),
-						radius: 8
-					}),
-					fill: new ol.style.Fill({
-						color: "rgba(0, 0, 255, 0.05)"
-					}),
-					stroke: new ol.style.Stroke({
-						color: "blue",
-						width: 2
-					}),
-				})
+						text: new ol.style.Text({
+							text: size.toString(),
+							fill: new ol.style.Fill({
+								color: '#fff'
+							})
+						})
+					})
+					styleCache[[size, color]] = style;
+				}
+				return style
 			}
 		})
 		this.format = new ol.format.GeoJSON({

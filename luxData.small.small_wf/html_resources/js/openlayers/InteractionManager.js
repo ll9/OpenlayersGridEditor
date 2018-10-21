@@ -64,14 +64,52 @@ class InteractionManager {
     setEvents() {
         this.ModifyInteraction.on('modifyend', (evt) => {
             let feature = evt.features.item(0);
-            let wkt = FeatureTransformer.getWkt(feature);
-            cefCustomObject.updateGeometry(feature.getId(), wkt);
+            this.updateGeometry(feature);
         })
         this.TranslateInteraction.on('translateend', (evt) => {
             let feature = evt.features.item(0);
-            let wkt = FeatureTransformer.getWkt(feature);
-            cefCustomObject.updateGeometry(feature.getId(), wkt);
+            this.updateGeometry(feature);
         })
+        this.TranslateInteraction.on('translatestart', (evt) => {
+            let feature = evt.features.item(0);
+            this.zoomToCluster(feature);
+        })
+        this.SelectInteraction.on('select', (evt) => {
+            if (evt.selected.length == 0) return;
+
+            let feature = evt.selected[0];
+            this.zoomToCluster(feature);
+        })
+    }
+
+    /**
+     * Updates Geometry of Feature | Cluster
+     * @param {Feature | Cluster} feature 
+     */
+    updateGeometry(feature) {
+        if (feature.get('features')) {
+            let geometry = feature.getGeometry();
+            feature = feature.get('features')[0]
+            feature.setGeometry(geometry);
+        }
+        let wkt = FeatureTransformer.getWkt(feature);
+        cefCustomObject.updateGeometry(feature.getId(), wkt);
+    }
+
+    /**
+     * If feature is a cluster, zoom to extent of cluster
+     * @param {ol/geom/Feature} feature 
+     */
+    zoomToCluster(feature) {
+        if (feature.get("features") && feature.get("features").length > 1) {
+            let extent = ol.extent.createEmpty();
+            for (let clusterFeature of feature.get('features')) {
+                ol.extent.extend(extent, clusterFeature.getGeometry().getExtent())
+            }
+            this.map.getView().fit(extent, {
+                duration: 1000
+            })
+        }
     }
 
 
